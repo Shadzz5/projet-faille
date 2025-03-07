@@ -5,7 +5,7 @@ services:
     image: mysql:8
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: vulnerable_db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
@@ -42,7 +42,6 @@ services:
       - db
     networks:
       - mynetwork
-
 volumes:
   db_data:
 networks:
