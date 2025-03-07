@@ -8,32 +8,30 @@
         body {
             font-family: Arial, sans-serif;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
+        .user {
             margin: 10px 0;
         }
     </style>
 </head>
 <body>
     <h2>Liste des utilisateurs</h2>
-    <ul id="users-list">
+    <div id="users-container">
         <!-- Les utilisateurs seront ajoutés ici dynamiquement -->
-    </ul>
+    </div>
 
     <script>
         // Récupérer la liste des utilisateurs depuis l'API
         fetch('http://localhost:3000/users')
             .then(response => response.json()) // Convertir la réponse en JSON
             .then(users => {
-                const usersList = document.getElementById('users-list');
+                const usersContainer = document.getElementById('users-container');
                 users.forEach(user => {
-                    // Créer un élément de liste pour chaque utilisateur
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${user.username} - Mot de passe: ${user.password}`;
-                    usersList.appendChild(listItem); // Ajouter l'élément à la liste
+                    // Créer un conteneur div pour chaque utilisateur
+                    const userDiv = document.createElement('div');
+                    userDiv.classList.add('user');
+                    // Utilisation de innerHTML pour introduire du contenu HTML directement
+                    userDiv.innerHTML = `<strong>Nom d'utilisateur :</strong> ${user.username} - <strong>Mot de passe :</strong> ${user.password} - <strong>Email :</strong> ${user.email}`;
+                    usersContainer.appendChild(userDiv); // Ajouter le conteneur à la page
                 });
             })
             .catch(error => {

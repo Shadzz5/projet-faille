@@ -14,15 +14,36 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to your profile, <span id="id"></span></h1>
+    <h1>Welcome to your profile, <span id="username"></span></h1>
+    <p>Email: <span id="email"></span></p>
+
     <p>This is your profile page.</p>
     <form action="/logout" method="POST">
         <button type="submit">Logout</button>
     </form>
+    <h2>Changer le mot de passe</h2>
+    <form action="http://localhost:3000/update-profile" method="post">
+        <input type="text" name="username" id="userUsername" required readonly>
+        <input type="password" name="newPassword" placeholder="Nouveau mot de passe" required>
+        <button type="submit">Mettre à jour</button>
+    </form>
+
     <script>
-        // Nous utilisons JavaScript pour insérer le nom d'utilisateur dynamiquement
-        const username = window.location.pathname.split('/').pop(); // Récupérer le username à partir de l'URL
-        document.getElementById('username').textContent = username; // Mettre à jour le texte avec le username
+        // Récupérer l'ID de l'utilisateur depuis l'URL (par exemple /profile/1)
+        const userId = window.location.pathname.split('/').pop();
+
+        // Effectuer un fetch pour obtenir les informations de l'utilisateur
+        fetch(`http://localhost:3000/user/${userId}`)
+            .then(response => response.json()) // Convertir la réponse en JSON
+            .then(user => {
+                // Insérer dynamiquement les informations utilisateur dans la page
+                document.getElementById('username').innerHTML = user.username;
+                document.getElementById('email').innerHTML = user.email;
+                document.getElementById('userUsername').value = user.username;
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
     </script>
 </body>
 </html>
