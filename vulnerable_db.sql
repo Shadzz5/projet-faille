@@ -27,11 +27,6 @@ SET time_zone = "+00:00";
 -- Structure de la table `messages`
 --
 
-CREATE TABLE `messages` (
-  `id` int NOT NULL,
-  `content` text NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -52,8 +47,6 @@ CREATE TABLE `users` (
 --
 -- Index pour la table `messages`
 --
-ALTER TABLE `messages`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `users`
@@ -69,10 +62,7 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT pour la table `messages`
 --
-ALTER TABLE `messages`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
---
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
