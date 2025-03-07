@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to your profile, <span id="id"></span></h1>
+    <p>This is your profile page.</p>
+    <form action="/logout" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+    <script>
+        // Nous utilisons JavaScript pour insérer le nom d'utilisateur dynamiquement
+        const username = window.location.pathname.split('/').pop(); // Récupérer le username à partir de l'URL
+        document.getElementById('username').textContent = username; // Mettre à jour le texte avec le username
+    </script>
+</body>
+</html>

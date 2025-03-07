@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilisateurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Liste des utilisateurs</h2>
+    <ul id="users-list">
+        <!-- Les utilisateurs seront ajoutés ici dynamiquement -->
+    </ul>
+
+    <script>
+        // Récupérer la liste des utilisateurs depuis l'API
+        fetch('http://localhost:3000/users')
+            .then(response => response.json()) // Convertir la réponse en JSON
+            .then(users => {
+                const usersList = document.getElementById('users-list');
+                users.forEach(user => {
+                    // Créer un élément de liste pour chaque utilisateur
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${user.username} - Mot de passe: ${user.password}`;
+                    usersList.appendChild(listItem); // Ajouter l'élément à la liste
+                });
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des utilisateurs:', error);
+            });
+    </script>
+</body>
+</html>
